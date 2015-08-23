@@ -2,7 +2,7 @@
 title: "Statistical Inference Course Project"
 author: "Humbert Costas"
 date: "22 de agosto de 2015"
-output: html_document
+output: pdf_document
 ---
 
 # Overview
@@ -91,3 +91,6 @@ print(show_distribution(sam, "Mean distribution for 10.000 samples"))
 ```
 
 As we can see, it's approximately a normal distribution.
+
+## Conclusion
+This is an example that supports the demostration that the Central Limit Theorem apply to the exponential distribution. The means for an exponential distribution is approximately a normal distribution with sample mean and sample variance equals to population mean and variance.
