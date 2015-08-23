@@ -110,8 +110,8 @@ g</code></pre>
 <div id="test-if-oj-and-vc-has-equality-for-each-dosage" class="section level2">
 <h2>Test if OJ and VC has equality for each dosage</h2>
 <p><span class="math">\(H_0: \mu_{oj} - \mu_{vc}\)</span> = 0<br /><span class="math">\(H_a: \mu_{oj} - \mu_{vc}\)</span> <span class="math">\(\neq\)</span> 0</p>
-<div id="dose-of-0.5" class="section level3">
-<h3>Dose of 0.5</h3>
+<div id="dose-of-0.5-mg." class="section level3">
+<h3>Dose of 0.5 mg.</h3>
 <p>Let’s perform a student’s t-test:</p>
 <pre class="r"><code>t_0.5 &lt;- subset(ToothGrowth, dose == &quot;0.5&quot;)
 t &lt;- t.test(len ~ supp, data = t_0.5, paired = FALSE, var.equal = FALSE)
@@ -129,8 +129,8 @@ t</code></pre>
 ##            13.23             7.98</code></pre>
 <p>The null hypothesis is rejected because p-value (<em>0.0063586</em>) is less than 0.05. So, we can say that the tooth growth from orange juice (OJ) is different from ascorbic acid (VC)</p>
 </div>
-<div id="dose-of-1" class="section level3">
-<h3>Dose of 1</h3>
+<div id="dose-of-1-mg." class="section level3">
+<h3>Dose of 1 mg.</h3>
 <p>Let’s perform a student’s t-test:</p>
 <pre class="r"><code>t_1 &lt;- subset(ToothGrowth, dose == &quot;1&quot;)
 t &lt;- t.test(len ~ supp, data = t_1, paired = FALSE, var.equal = FALSE)
@@ -148,8 +148,8 @@ t</code></pre>
 ##            22.70            16.77</code></pre>
 <p>The null hypothesis is rejected because p-value (<em>0.0010384</em>) is less than 0.05. So, we can say that the tooth growth from orange juice (OJ) is different from ascorbic acid (VC)</p>
 </div>
-<div id="dose-of-2" class="section level3">
-<h3>Dose of 2</h3>
+<div id="dose-of-2-mg." class="section level3">
+<h3>Dose of 2 mg.</h3>
 <p>Let’s perform a student’s t-test:</p>
 <pre class="r"><code>t_2 &lt;- subset(ToothGrowth, dose == &quot;2&quot;)
 t &lt;- t.test(len ~ supp, data = t_2, paired = FALSE, var.equal = FALSE)
@@ -171,8 +171,8 @@ t</code></pre>
 <div id="test-if-oj-affects-more-on-tooth-growth-than-vc" class="section level2">
 <h2>Test if OJ affects more on tooth growth than VC</h2>
 <p><span class="math">\(H_0: \mu_{oj} - \mu_{vc}\)</span> <span class="math">\(\leq\)</span> 0<br /><span class="math">\(H_a: \mu_{oj} - \mu_{vc}\)</span> &gt; 0</p>
-<div id="dose-of-0.5-1" class="section level3">
-<h3>Dose of 0.5</h3>
+<div id="dose-of-0.5-mg.-1" class="section level3">
+<h3>Dose of 0.5 mg.</h3>
 <p>Let’s perform a student’s t-test:</p>
 <pre class="r"><code>t &lt;- t.test(len ~ supp, data = t_0.5, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE)
 t</code></pre>
@@ -189,8 +189,8 @@ t</code></pre>
 ##            13.23             7.98</code></pre>
 <p>The null hypothesis is rejected because p-value(<em>0.0031793</em>) is smaller than 0.05. So, we can say that orange juice (<em>OJ</em>) affects more on tooth growth than ascorbic acid (<em>VC</em>).</p>
 </div>
-<div id="dose-of-1-1" class="section level3">
-<h3>Dose of 1</h3>
+<div id="dose-of-1-mg.-1" class="section level3">
+<h3>Dose of 1 mg.</h3>
 <p>Let’s perform a student’s t-test:</p>
 <pre class="r"><code>t &lt;- t.test(len ~ supp, data = t_1, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE)
 t</code></pre>
@@ -207,8 +207,8 @@ t</code></pre>
 ##            22.70            16.77</code></pre>
 <p>The null hypothesis is rejected because p-value(<em>0.00052</em>) is smaller than 0.05. So, we can say that orange juice (<em>OJ</em>) affects more on tooth growth than ascorbic acid (<em>VC</em>).</p>
 </div>
-<div id="dose-of-2-1" class="section level3">
-<h3>Dose of 2</h3>
+<div id="dose-of-2-mg.-1" class="section level3">
+<h3>Dose of 2 mg.</h3>
 <p>Let’s perform a student’s t-test:</p>
 <pre class="r"><code>t &lt;- t.test(len ~ supp, data = t_2, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE)
 t</code></pre>

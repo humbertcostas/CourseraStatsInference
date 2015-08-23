@@ -2,7 +2,7 @@
 title: "Statistical Inference Course Project 2"
 author: "Humbert Costas"
 date: "22 de agosto de 2015"
-output: html_document
+output: pdf_document
 subtitle: Analysis of the ToothGrowth of Guinea pigs
 ---
 
@@ -43,7 +43,7 @@ To compare the means of length of tooth when given OJ and VC at each dose level,
 $H_0: \mu_{oj} - \mu_{vc}$ = 0  
 $H_a: \mu_{oj} - \mu_{vc}$ $\neq$ 0
 
-### Dose of 0.5  
+### Dose of 0.5 mg.
   
 Let's perform a student's t-test:  
 
@@ -55,7 +55,7 @@ t
 
 The null hypothesis is rejected because p-value (*`r t$p.value`*) is less than 0.05. So, we can say that the tooth growth from orange juice (OJ) is different from ascorbic acid (VC)
 
-### Dose of 1 
+### Dose of 1 mg. 
   
 Let's perform a student's t-test:  
 
@@ -67,7 +67,7 @@ t
   
 The null hypothesis is rejected because p-value (*`r t$p.value`*) is less than 0.05. So, we can say that the tooth growth from orange juice (OJ) is different from ascorbic acid (VC)
 
-### Dose of 2  
+### Dose of 2 mg. 
   
 Let's perform a student's t-test:  
 
@@ -83,7 +83,7 @@ The null hypothesis is accepted because p-value (*`r t$p.value`*) is greater tha
 $H_0: \mu_{oj} - \mu_{vc}$ $\leq$ 0  
 $H_a: \mu_{oj} - \mu_{vc}$ > 0  
 
-### Dose of 0.5  
+### Dose of 0.5 mg. 
   
 Let's perform a student's t-test:  
 
@@ -94,7 +94,7 @@ t
 
 The null hypothesis is rejected because p-value(*`r t$p.value`*) is smaller than 0.05. So, we can say that orange juice (*OJ*) affects more on tooth growth than ascorbic acid (*VC*).  
 
-### Dose of 1  
+### Dose of 1 mg. 
   
 Let's perform a student's t-test:  
 
@@ -105,7 +105,7 @@ t
 
 The null hypothesis is rejected because p-value(*`r sprintf("%.5f", t$p.value)`*) is smaller than 0.05. So, we can say that orange juice (*OJ*) affects more on tooth growth than ascorbic acid (*VC*).
 
-### Dose of 2  
+### Dose of 2 mg. 
   
 Let's perform a student's t-test:  
 
