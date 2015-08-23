@@ -19,22 +19,75 @@ nsims <- 1000   # Number of simulations
 Illustration via simulation and associated explanatory text the properties of the distribution of the mean of 40 exponentials.
 
 ```{r simulations}
+# The sample simulation
 sam = NULL
-for (i in 1:1000) sam = c(sam, rexp(n,lambda))
+for (i in 1:nsims) sam = c(sam, mean(rexp(n,lambda)))
 
 # Mean and Variabce of the exponential distributions
-s_means <- apply(sam,2,mean)
-s_mean <- mean(s_means)
-s_sd <- sd(sam)^2
+s_mean <- mean(sam)
+s_sd <- sd(sam)
 s_var <- var(sam)
 
 # Theoretical Mean and Variance
 t_mean <- 1 / lambda
-t_sd <- ((1 / lambda) ^ 2) / n
-t_var <- t_sd ^ 2
+t_var <- ((1 / lambda) ^ 2) / n
+t_sd <- sqrt(t_var) 
 ```
 
+## Results
 
-1. Show the sample mean and compare it to the theoretical mean of the distribution.
+1. Comparision of the sample mean and the theoretical mean of the distribution:  
+ - Sample Mean (*s_mean*): `r s_mean`
+ - Theoretical Mean (*t_mean*): `r t_mean`
+ 
+ They are really close.
+
+
 2. Show how variable the sample is (via variance) and compare it to the theoretical variance of the distribution.
+ - Sample Variance (*s_var*): `r s_var`
+ - Theoretical Variance (*t_var*): `r t_var`
+
+They are really close.
+
 3. Show that the distribution is approximately normal.
+```{r distribution}
+library(ggplot2)
+show_distribution <- function(sam, title)
+{
+    df_sample_means <- data.frame(sam)
+    g <- ggplot(data = df_sample_means, aes(x = sam))
+    g <- g + geom_histogram(binwidth = lambda, fill = "skyblue2", color = "black")
+    g <- g + geom_vline(xintercept = s_mean, size = 1.2, color = "red", linetype = "longdash")
+    g <- g + geom_vline(xintercept = t_mean, size = 1, color = "red4")
+    g <- g + stat_function(fun = dnorm, args = list(mean = t_mean, t_sd), color = "yellow4", size = 1.2)
+    g <- g + stat_function(fun = dnorm, args = list(mean = s_mean, s_sd), color = "yellow", size = 1, linetype = "longdash")
+    g <- g + labs(title = title, x = "Mean of 40 numbers from Exponential Distribution", y = "Density")
+    g
+}
+print(show_distribution(sam, "Mean distribution for 1.000 samples"))
+```
+
+The results shows that the sample means distribution (*red dashed*) is very close to the theoretical center of the distribution (*strong red*).
+
+It seems that the distribution is approximately normal. Let's see what happens if we simulate 10.000 instead of 1.000 to show a better normal distribution.
+
+```{r distribution2, echo = FALSE}
+nsims <- 10000   # Number of simulations
+# The sample simulation
+sam = NULL
+for (i in 1:nsims) sam = c(sam, mean(rexp(n,lambda)))
+
+# Mean and Variabce of the exponential distributions
+s_mean <- mean(sam)
+s_sd <- sd(sam)
+s_var <- var(sam)
+
+# Theoretical Mean and Variance
+t_mean <- 1 / lambda
+t_var <- ((1 / lambda) ^ 2) / n
+t_sd <- sqrt(t_var) 
+
+print(show_distribution(sam, "Mean distribution for 10.000 samples"))
+```
+
+As we can see, it's approximately a normal distribution.
