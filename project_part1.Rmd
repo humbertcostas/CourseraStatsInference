@@ -1,0 +1,40 @@
+---
+title: "Statistical Inference Course Project"
+author: "Humbert Costas"
+date: "22 de agosto de 2015"
+output: html_document
+---
+
+# Overview
+In this project I will **investigate the exponential distribution** in R **and compare it with the Central Limit Theorem**. The exponential distribution can be simulated in R with rexp(n, lambda) where lambda is the rate parameter. The mean of exponential distribution is 1/lambda and the standard deviation is also 1/lambda. I will ***set lambda = 0.2*** for all of the simulations. I will investigate the distribution of averages of 40 exponentials.
+
+```{r overview}
+set.seed(666)   # Reproducibility purposes
+n <- 40         # Number of samples
+lambda <- .2     # Set lambda to 0.2
+nsims <- 1000   # Number of simulations
+```
+
+## Simulations
+Illustration via simulation and associated explanatory text the properties of the distribution of the mean of 40 exponentials.
+
+```{r simulations}
+sam = NULL
+for (i in 1:1000) sam = c(sam, rexp(n,lambda))
+
+# Mean and Variabce of the exponential distributions
+s_means <- apply(sam,2,mean)
+s_mean <- mean(s_means)
+s_sd <- sd(sam)^2
+s_var <- var(sam)
+
+# Theoretical Mean and Variance
+t_mean <- 1 / lambda
+t_sd <- ((1 / lambda) ^ 2) / n
+t_var <- t_sd ^ 2
+```
+
+
+1. Show the sample mean and compare it to the theoretical mean of the distribution.
+2. Show how variable the sample is (via variance) and compare it to the theoretical variance of the distribution.
+3. Show that the distribution is approximately normal.
