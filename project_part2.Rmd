@@ -6,10 +6,10 @@ output: html_document
 subtitle: Analysis of the ToothGrowth of Guinea pigs
 ---
 
-## Overview
+# Overview
 Now in the second portion of the class, we're going to analyze the ToothGrowth data in the R datasets package.
 
-## Basic exploratory data analyses
+# Basic exploratory data analyses
 
 Data shows the results of a study on the effects that Vitamic C has on the growth (length) of teeth of guinea pigs. Vitamin C was provided either in the form of Orange Juice (OJ) or ascorbic acid (VC), at three different dose levels to 10 animals, giving a total of 60 different sample values.
 ```{r exploratory}
@@ -19,7 +19,7 @@ str(ToothGrowth)
 summary(ToothGrowth)
 ```
 
-## Summary of the data.  
+# Summary of the data.  
 
 Let's take a look of the data distribution with a scattered points graph  
 
@@ -35,15 +35,18 @@ g
   
 By looking at the graph, we could say that at doses =0,5 and =1.0 OJ seems to have a clear effect on the length of teeth, compared to VC. On the other hand, when the dose =2.0 the results are less clear.
 
-## Comparison tooth growth by supp and dose. (using confidence intervals and hypothesis tests)
+# Comparison tooth growth by supp and dose. (using confidence intervals and hypothesis tests)
 
 To compare the means of length of tooth when given OJ and VC at each dose level, we will let $\mu_{oj}$ be the mean of tooth growth with OJ and $\mu_{vs}$ the mean of tooth growth with VC. We will assume unequal variance (we can’t assure that guinea pigs are from the same population) and will perform a t test, because each test was ran in groups of 10 guinea pigs.
 
-### Test if OJ and VC has equality for each dosage
+## Test if OJ and VC has equality for each dosage
 $H_0: \mu_{oj} - \mu_{vc}$ = 0  
 $H_a: \mu_{oj} - \mu_{vc}$ $\neq$ 0
 
-#### Dose of 0.5
+### Dose of 0.5  
+  
+Let's perform a student's t-test:  
+
 ```{r test1_dose05}
 t_0.5 <- subset(ToothGrowth, dose == "0.5")
 t <- t.test(len ~ supp, data = t_0.5, paired = FALSE, var.equal = FALSE)
@@ -52,7 +55,10 @@ t
 
 The null hypothesis is rejected because p-value (*`r t$p.value`*) is less than 0.05. So, we can say that the tooth growth from orange juice (OJ) is different from ascorbic acid (VC)
 
-#### Dose of 1
+### Dose of 1 
+  
+Let's perform a student's t-test:  
+
 ```{r test1_dose1}
 t_1 <- subset(ToothGrowth, dose == "1")
 t <- t.test(len ~ supp, data = t_1, paired = FALSE, var.equal = FALSE)
@@ -61,7 +67,10 @@ t
   
 The null hypothesis is rejected because p-value (*`r t$p.value`*) is less than 0.05. So, we can say that the tooth growth from orange juice (OJ) is different from ascorbic acid (VC)
 
-#### Dose of 2
+### Dose of 2  
+  
+Let's perform a student's t-test:  
+
 ```{r test1_dose2}
 t_2 <- subset(ToothGrowth, dose == "2")
 t <- t.test(len ~ supp, data = t_2, paired = FALSE, var.equal = FALSE)
@@ -70,11 +79,14 @@ t
   
 The null hypothesis is accepted because p-value (*`r t$p.value`*) is greater than 0.05. So, we can say that the tooth growth from orange juice (OJ) has no differences from ascorbic acid (VC)
 
-### Test if OJ affects more on tooth growth than VC
+## Test if OJ affects more on tooth growth than VC
 $H_0: \mu_{oj} - \mu_{vc}$ $\leq$ 0  
 $H_a: \mu_{oj} - \mu_{vc}$ > 0  
 
-#### Dose of 0.5
+### Dose of 0.5  
+  
+Let's perform a student's t-test:  
+
 ```{r test2_dose05}
 t <- t.test(len ~ supp, data = t_0.5, alternative = "greater", paired = FALSE, var.equal = FALSE)
 t
@@ -82,7 +94,10 @@ t
 
 The null hypothesis is rejected because p-value(*`r t$p.value`*) is smaller than 0.05. So, we can say that orange juice (*OJ*) affects more on tooth growth than ascorbic acid (*VC*).  
 
-#### Dose of 1
+### Dose of 1  
+  
+Let's perform a student's t-test:  
+
 ```{r test2_dose1}
 t <- t.test(len ~ supp, data = t_1, alternative = "greater", paired = FALSE, var.equal = FALSE)
 t
@@ -90,7 +105,10 @@ t
 
 The null hypothesis is rejected because p-value(*`r sprintf("%.5f", t$p.value)`*) is smaller than 0.05. So, we can say that orange juice (*OJ*) affects more on tooth growth than ascorbic acid (*VC*).
 
-#### Dose of 2
+### Dose of 2  
+  
+Let's perform a student's t-test:  
+
 ```{r test2_dose2}
 t <- t.test(len ~ supp, data = t_2, alternative = "greater", paired = FALSE, var.equal = FALSE)
 t
@@ -98,6 +116,6 @@ t
 
 The null hypothesis is accepted because p-value(*`r t$p.value`*) is greater than 0.05. So, we can't reach a conclusion if orange juice (*OJ*) affects more or less on tooth growth than ascorbic acid (*VC*).
 
-## Conclusions
+# Conclusions
 - **On doses of less than 2mg** we can say that **Orange Juice has more effect** of tooth growth **than Ascorbic Acid**
 - On doses of 2mg OJ and VC seem to have equal effect on tooth growth
