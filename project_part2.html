@@ -148,8 +148,8 @@ t</code></pre>
 </div>
 <div id="dose-of-2" class="section level4">
 <h4>Dose of 2</h4>
-<pre class="r"><code>t_1 &lt;- subset(ToothGrowth, dose == &quot;2&quot;)
-t &lt;- t.test(len ~ supp, data = t_1, paired = FALSE, var.equal = FALSE)
+<pre class="r"><code>t_2 &lt;- subset(ToothGrowth, dose == &quot;2&quot;)
+t &lt;- t.test(len ~ supp, data = t_2, paired = FALSE, var.equal = FALSE)
 t</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -165,9 +165,68 @@ t</code></pre>
 <p>The null hypothesis is accepted because p-value (<em>0.9638516</em>) is greater than 0.05. So, we can say that the tooth growth from orange juice (OJ) has no differences from ascorbic acid (VC)</p>
 </div>
 </div>
+<div id="test-if-oj-affects-more-on-tooth-growth-than-vc" class="section level3">
+<h3>Test if OJ affects more on tooth growth than VC</h3>
+<p><span class="math">\(H_0: \mu_{oj} - \mu_{vc}\)</span> <span class="math">\(\leq\)</span> 0<br /><span class="math">\(H_a: \mu_{oj} - \mu_{vc}\)</span> &gt; 0</p>
+<div id="dose-of-0.5-1" class="section level4">
+<h4>Dose of 0.5</h4>
+<pre class="r"><code>t &lt;- t.test(len ~ supp, data = t_0.5, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE)
+t</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 3.1697, df = 14.969, p-value = 0.003179
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  2.34604     Inf
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            13.23             7.98</code></pre>
+<p>The null hypothesis is rejected because p-value(<em>0.0031793</em>) is smaller than 0.05. So, we can say that orange juice (<em>OJ</em>) affects more on tooth growth than ascorbic acid (<em>VC</em>).</p>
+</div>
+<div id="dose-of-1-1" class="section level4">
+<h4>Dose of 1</h4>
+<pre class="r"><code>t &lt;- t.test(len ~ supp, data = t_1, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE)
+t</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 4.0328, df = 15.358, p-value = 0.0005192
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  3.356158      Inf
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            22.70            16.77</code></pre>
+<p>The null hypothesis is rejected because p-value(<em>0.00052</em>) is smaller than 0.05. So, we can say that orange juice (<em>OJ</em>) affects more on tooth growth than ascorbic acid (<em>VC</em>).</p>
+</div>
+<div id="dose-of-2-1" class="section level4">
+<h4>Dose of 2</h4>
+<pre class="r"><code>t &lt;- t.test(len ~ supp, data = t_2, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE)
+t</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = -0.0461, df = 14.04, p-value = 0.5181
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -3.1335     Inf
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            26.06            26.14</code></pre>
+<p>The null hypothesis is accepted because p-value(<em>0.5180742</em>) is greater than 0.05. So, we can’t reach a conclusion if orange juice (<em>OJ</em>) affects more or less on tooth growth than ascorbic acid (<em>VC</em>).</p>
+</div>
+</div>
 </div>
 <div id="conclusions" class="section level2">
 <h2>Conclusions</h2>
+<ul>
+<li><strong>On doses of less than 2mg</strong> we can say that <strong>Orange Juice has more effect</strong> of tooth growth <strong>than Ascorbic Acid</strong></li>
+<li>On doses of 2mg OJ and VC seem to have equal effect on tooth growth</li>
+</ul>
 </div>
 
 

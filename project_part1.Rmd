@@ -1,5 +1,6 @@
 ---
 title: "Statistical Inference Course Project"
+subtitle: "Exponential Distribution vs. CLT"
 author: "Humbert Costas"
 date: "22 de agosto de 2015"
 output: pdf_document

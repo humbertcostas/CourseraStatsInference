@@ -63,11 +63,41 @@ The null hypothesis is rejected because p-value (*`r t$p.value`*) is less than 0
 
 #### Dose of 2
 ```{r test1_dose2}
-t_1 <- subset(ToothGrowth, dose == "2")
-t <- t.test(len ~ supp, data = t_1, paired = FALSE, var.equal = FALSE)
+t_2 <- subset(ToothGrowth, dose == "2")
+t <- t.test(len ~ supp, data = t_2, paired = FALSE, var.equal = FALSE)
 t
 ```
   
 The null hypothesis is accepted because p-value (*`r t$p.value`*) is greater than 0.05. So, we can say that the tooth growth from orange juice (OJ) has no differences from ascorbic acid (VC)
 
+### Test if OJ affects more on tooth growth than VC
+$H_0: \mu_{oj} - \mu_{vc}$ $\leq$ 0  
+$H_a: \mu_{oj} - \mu_{vc}$ > 0  
+
+#### Dose of 0.5
+```{r test2_dose05}
+t <- t.test(len ~ supp, data = t_0.5, alternative = "greater", paired = FALSE, var.equal = FALSE)
+t
+```
+
+The null hypothesis is rejected because p-value(*`r t$p.value`*) is smaller than 0.05. So, we can say that orange juice (*OJ*) affects more on tooth growth than ascorbic acid (*VC*).  
+
+#### Dose of 1
+```{r test2_dose1}
+t <- t.test(len ~ supp, data = t_1, alternative = "greater", paired = FALSE, var.equal = FALSE)
+t
+```
+
+The null hypothesis is rejected because p-value(*`r sprintf("%.5f", t$p.value)`*) is smaller than 0.05. So, we can say that orange juice (*OJ*) affects more on tooth growth than ascorbic acid (*VC*).
+
+#### Dose of 2
+```{r test2_dose2}
+t <- t.test(len ~ supp, data = t_2, alternative = "greater", paired = FALSE, var.equal = FALSE)
+t
+```
+
+The null hypothesis is accepted because p-value(*`r t$p.value`*) is greater than 0.05. So, we can't reach a conclusion if orange juice (*OJ*) affects more or less on tooth growth than ascorbic acid (*VC*).
+
 ## Conclusions
+- **On doses of less than 2mg** we can say that **Orange Juice has more effect** of tooth growth **than Ascorbic Acid**
+- On doses of 2mg OJ and VC seem to have equal effect on tooth growth
